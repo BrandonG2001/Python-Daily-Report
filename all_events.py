@@ -101,8 +101,10 @@ def get_all_events():
                     
                     event_info_list = [calendar_name, name, event_location, start_time_formatted, end_time_formatted]
                     
+                ####################
+                ### Default Case ###
+                ####################
                 case _:
-                    # default
                     event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
 
 
@@ -115,13 +117,13 @@ def get_all_events():
                 #last_index = len(events_info[my_date_formatted])
                 events_info[my_date_formatted].append(event_info_list)
 
-    # sort dictionary entries by date
+    # sort dictionary entries by time
     for date in events_info:
-        events_info[date].sort(key=lambda x:x[-2])
+        events_info[date].sort(key=lambda x: datetime.strptime(x[-2], '%H:%M'))
     
     # check if today is in the list (make sure events are future not past)
     today_key = today.strftime('%w, %m/%d')
-    curr_time = datetime.now().time()
+    curr_time = datetime.now(tz=my_tz).time()
     if today_key in events_info.keys():
         todays_events = events_info[today_key]
         for event in todays_events:
