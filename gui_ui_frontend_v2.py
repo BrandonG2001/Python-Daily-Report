@@ -10,6 +10,7 @@
 from sys import argv as sys_argv, exit as sys_exit
 from PyQt5 import QtCore, QtGui, QtWidgets
 from daily_report import main_report
+from auto_website_open import open_my_websites
 from execute_command import clean_windows_temp_files, clean_cache
 from multiprocessing.pool import ThreadPool
 from time import sleep
@@ -247,8 +248,8 @@ class Ui_Dialog(object):
         self.pushButton.setText(_translate("Dialog", "Run Daily Report"))
         self.pushButton.clicked.connect(self.run_report)
 
-        self.pushButton_2.setText(_translate("Dialog", "Clean Windows"))
-        self.pushButton_2.clicked.connect(self.run_cleanup)
+        self.pushButton_2.setText(_translate("Dialog", "Open My Websites"))
+        self.pushButton_2.clicked.connect(open_my_websites)
 
         self.checkBox.setText(_translate("Dialog", "Full Run (w/ update sys)"))
         self.checkBox.stateChanged.connect(self.set_full_run)
