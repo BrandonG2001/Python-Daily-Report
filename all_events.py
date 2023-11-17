@@ -58,51 +58,52 @@ def get_all_events():
             my_date_formatted = start_time_datetime.date().strftime('%w, %m/%d')
 
             name = name.strip()
-            
-            # default
-            event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
-            
-            
-            #######################
-            ### Checking Nascar ###
-            ####################### 
-            if 'Nascar' in calendar_name:
-                name = name.replace('🏁','')
-                name = name.strip()
-                
-                event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
 
-
-            #########################
-            ### College  Football ###
-            #########################
-            elif 'Football' in calendar_name:
-                
-                # just get the name verses opponent (Special Football Events)
-                name = full_name.split(' - ')[0]
-                
-                # get rid of any length of time in name (calendar makers trying to be helpful)
-                name = name.split('(')[0]
-                # have to do this
-                name = name.replace('University of Texas Football', 't.u.')
-                name = name.replace('Texas A&M University Football', "Texas A&M")
-                name = name.replace('Texas Tech University Football', "Texas Tech")
-                name = name.replace('vs', 'verses')
-                name = name.strip()
-                
-                event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
-
+            # specific formatting based on calendar name
+            match calendar_name.split():
+                #######################
+                ### Checking Nascar ###
+                #######################
+                case ['Nascar', *_]:
+                    name = name.replace('🏁','')
+                    name = name.strip()
                     
-            ############################
-            ### Checking Formula 1   ###
-            ############################
-            elif calendar_name =='Formula 1':
-                name = name.split('F1: ')[-1]
-                event_location = (name.split('(')[1]).split(')')[0]
-                name = name.split('(')[0]
-                name = name.strip()
-                
-                event_info_list = [calendar_name, name, event_location, start_time_formatted, end_time_formatted]     
+                    event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
+
+
+                #########################
+                ### College  Football ###
+                #########################
+                case [*_, 'Football']:
+                    # just get the name verses opponent (Special Football Events)
+                    name = full_name.split(' - ')[0]
+                    
+                    # get rid of any length of time in name (calendar makers trying to be helpful)
+                    name = name.split('(')[0]
+                    # have to do this
+                    name = name.replace('University of Texas Football', 't.u.')
+                    name = name.replace('Texas A&M University Football', "Texas A&M")
+                    name = name.replace('Texas Tech University Football', "Texas Tech")
+                    name = name.replace('vs', 'verses')
+                    name = name.strip()
+                    
+                    event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
+
+                        
+                ############################
+                ### Checking Formula 1   ###
+                ############################
+                case ['Formula', '1']:
+                    name = name.split('F1: ')[-1]
+                    event_location = (name.split('(')[1]).split(')')[0]
+                    name = name.split('(')[0]
+                    name = name.strip()
+                    
+                    event_info_list = [calendar_name, name, event_location, start_time_formatted, end_time_formatted]
+                    
+                case _:
+                    # default
+                    event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
 
 
             #############################
@@ -181,7 +182,8 @@ def get_all_events():
     return my_events
 
 
-
 if __name__ == '__main__':
     
-    ic(get_all_events())
+    print(get_all_events())
+    
+    

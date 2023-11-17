@@ -27,21 +27,18 @@ async def OpenBrowser(url_dict: dict) -> None:
             # Check if the URL is reachable before browser query
             # switch statement based on the status code
             match response.status_code:
-                # 200 = ALL GOOD
-                case 200: 
+                case 200: # 200 = ALL GOOD
                     web.open(url=all_urls[index])
-                # 301 is old url code -> will be sent to updated url
-                case 301:  
+                case 301 | 302:  # 301/302 is old url code -> will be sent to updated url
                     web.open(url=all_urls[index])
-                # 302 is temporary version of code 301
-                case 302:  
-                    web.open(url=all_urls[index])
+                    log.warning(f'Opened {all_urls[index]} but code was {response.status_code} indicating url is/has moved')
                 # 403 is = no program code access 
                 case 403:
                     web.open(url=all_urls[index])
+                    log.warning(f'Opened {all_urls[index]} but code was {response.status_code} indicating code has not access to it')
                 # default = Sorry error happened
                 case _:
-                    log.warning(f'GET Request Failed (Status Code Not 200) and returned a {response.status_code} status code for {all_urls[index]}')
+                    log.warning(f'GET Request Failed and returned a {response.status_code} status code for {all_urls[index]}')
         except RequestException as error:
             log.critical(f'HTTP Error occurred, failed to reach URL: {error}')
         except Exception as error:
@@ -70,7 +67,7 @@ def open_my_websites() -> None:
     asyncio.run(OpenBrowser(url_dict=personal_urls))
     asyncio.run(OpenBrowser(url_dict=work_urls))
 
-        
+
 if __name__ == '__main__':
     open_my_websites()
     sys.exit()
