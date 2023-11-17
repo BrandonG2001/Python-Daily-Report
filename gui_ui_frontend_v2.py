@@ -14,7 +14,6 @@ from execute_command import clean_windows_temp_files, clean_cache
 from multiprocessing.pool import ThreadPool
 from time import sleep
 
-from icecream import ic
 from warnings import filterwarnings
 filterwarnings("ignore", category=UserWarning)
 
@@ -199,7 +198,7 @@ class Ui_Dialog(object):
             self.pushButton_2.setGeometry(QtCore.QRect(270, 150, 111, 31))
             self.pushButton_2.setObjectName("pushButton_2")
             self.checkBox = QtWidgets.QCheckBox(Dialog)
-            self.checkBox.setGeometry(QtCore.QRect(50, 30, 150, 17))
+            self.checkBox.setGeometry(QtCore.QRect(50, 30, 200, 17))
             self.checkBox.setChecked(True)
             self.checkBox.setObjectName("checkBox")
             self.checkBox_2 = QtWidgets.QCheckBox(Dialog)
@@ -231,7 +230,7 @@ class Ui_Dialog(object):
 
         try:
             icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(join(environ['UserProfile'], 'Documents', 'Github', 'Daily-Report-Using-Python', 'jarvis image.png')), QtGui.QIcon.Normal, QtGui.QIcon.On)
+            icon.addPixmap(QtGui.QPixmap(join(environ['UserProfile'], 'Documents', 'Github', 'Python-Daily-Report', 'jarvis image.png')), QtGui.QIcon.Normal, QtGui.QIcon.On)
             Dialog.setWindowIcon(icon)
         except:
             pass
@@ -251,7 +250,7 @@ class Ui_Dialog(object):
         self.pushButton_2.setText(_translate("Dialog", "Clean Windows"))
         self.pushButton_2.clicked.connect(self.run_cleanup)
 
-        self.checkBox.setText(_translate("Dialog", "Full Run"))
+        self.checkBox.setText(_translate("Dialog", "Full Run (w/ update sys)"))
         self.checkBox.stateChanged.connect(self.set_full_run)
 
         self.checkBox_2.setText(_translate("Dialog", "Check Calendar"))
