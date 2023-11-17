@@ -1,4 +1,4 @@
-from requests import get as req_get
+from httpx import get as req_get
 from datetime import datetime, timedelta
 from icecream import ic
 

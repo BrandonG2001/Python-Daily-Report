@@ -1,5 +1,5 @@
 from json import loads as json_loads
-from requests import get as req_get
+from httpx import get as req_get
 
 from html import unescape
 from icecream import ic

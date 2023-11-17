@@ -1,6 +1,6 @@
 from winsdk.windows.devices.geolocation import Geolocator, GeolocationAccessStatus  # pip install winsdk
 from asyncio import run as async_run
-from requests import get as req_get
+from httpx import get as req_get
 from geopy.geocoders import Nominatim
 from icecream import ic
 

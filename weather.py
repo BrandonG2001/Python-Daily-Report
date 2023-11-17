@@ -1,5 +1,5 @@
 #import requests
-from requests import get
+from httpx import get
 from personal_information import OPEN_WEATHER_MAP_API_KEY
 from personal_information import TOMORROW_IO_API_KEY 
 from personal_information import WEATHER_SOURCE

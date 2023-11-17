@@ -2,7 +2,7 @@ from googleapiclient.discovery import build # pip install google-api-python-clie
 from webbrowser import open as web_open
 from time_period import get_time_period
 from datetime import timezone, datetime
-from requests import get as req_get
+from httpx import get as req_get
 from asyncio import run
 
 from personal_information import TWITCH_CLIENT_ID, YOUTUBE_API_KEY

@@ -1,4 +1,4 @@
-from requests import get as req_get
+from httpx import get as req_get
 from json import loads as json_loads
 from icecream import ic
 
