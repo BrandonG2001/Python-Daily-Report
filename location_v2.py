@@ -28,18 +28,30 @@ def my_location(debugging=False):
         latitude, longitude = get_hardware_loc()
         geolocator = Nominatim(user_agent="PythonDailyReport")
         rev_geolocate = geolocator.reverse((latitude, longitude))
+        #ic(rev_geolocate.raw)
         if rev_geolocate.address == None:
             #ic('My Location Failed to Use Hardware Address')
             raise Exception
-        hardware_address = str(rev_geolocate.address)
-        ic(hardware_address)
+        location_dict = rev_geolocate.raw['address']
+        #ic(location_dict)
+        if 'city' in location_dict.keys():
+            city = location_dict['city']
+        else:
+            city = location_dict['county']
+            
+        #zipcode = location_dict['postcode']
+        state = location_dict['state']
+        country = location_dict['country']
+        
+        #hardware_address = str(rev_geolocate.address)
+        #ic(hardware_address)
         # a lot more info than what i need but in case i want it
         #house, street, city, county, state, zipcode, country = hardware_address.split(', ')
-        country = hardware_address.split(', ')[-1]
-        zipcode = hardware_address.split(', ')[-2]
-        state = hardware_address.split(', ')[-3]
-        county = hardware_address.split(', ')[-4]
-        city = hardware_address.split(', ')[-5]
+        #country = hardware_address.split(', ')[-1]
+        #zipcode = hardware_address.split(', ')[-2]
+        #state = hardware_address.split(', ')[-3]
+        #county = hardware_address.split(', ')[-4]
+        #city = hardware_address.split(', ')[-5]
         #street = hardware_address.split(', ')[-6]
         #house = hardware_address.split(f', {street}')[0]
         #print('Using Hardware Location')
@@ -64,4 +76,4 @@ def my_location(debugging=False):
             }
 
 if __name__ == '__main__':
-    my_location(debugging=True)
+    print(my_location(debugging=True))
