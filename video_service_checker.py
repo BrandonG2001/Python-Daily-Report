@@ -177,4 +177,7 @@ if __name__ =='__main__':
     while http_error == 'None...YAY':
         yt_dict = youtube_checker_v2()
         http_error = yt_dict['ERROR']
-        num_runs += 1
+        if http_error == 'None...YAY':
+            num_runs += 1
+            
+    print(f'Completed {num_runs} full runs of the youtube checker')
