@@ -182,8 +182,8 @@ if __name__ =='__main__':
     print(f'Completed {num_runs} full runs of the youtube checker')"""
     
     num_twitch_runs = 0
-    is_anyone_live()
-    #for i in range(100):
-        #live_twitch_user = is_anyone_live()  
+    #is_anyone_live()
+    for i in range(100):
+        live_twitch_user = is_anyone_live()  
     #if live_twitch_user != None:
         #watch_user(live_twitch_user)
