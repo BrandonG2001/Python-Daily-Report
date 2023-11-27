@@ -160,6 +160,8 @@ def is_anyone_live():
 
 
 if __name__ =='__main__':
+    
+    # youtube api is costly (in terms of time and api requests)
     #ic(youtube_checker_v2())
     
     
