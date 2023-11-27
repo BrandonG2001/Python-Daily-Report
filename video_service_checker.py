@@ -173,8 +173,9 @@ if __name__ =='__main__':
     
     http_error = 'None...YAY'
     num_runs = 0
-    
+    print('Checking youtube api\n')
     while http_error == 'None...YAY':
+        print(f'Run: {num_runs + 1}')
         yt_dict = youtube_checker_v2()
         http_error = yt_dict['ERROR']
         if http_error == 'None...YAY':
