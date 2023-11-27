@@ -165,11 +165,7 @@ if __name__ =='__main__':
     #ic(youtube_checker_v2())
     
     
-    """
-    live_twitch_user = is_anyone_live()  
-    if live_twitch_user != None:
-        watch_user(live_twitch_user)
-    """
+
     
     http_error = 'None...YAY'
     num_runs = 0
@@ -183,3 +179,9 @@ if __name__ =='__main__':
             num_runs += 1
             
     print(f'Completed {num_runs} full runs of the youtube checker')
+    
+    num_twitch_runs = 0
+    for i in range(100):
+        live_twitch_user = is_anyone_live()  
+    #if live_twitch_user != None:
+        #watch_user(live_twitch_user)
