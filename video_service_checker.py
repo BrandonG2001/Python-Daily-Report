@@ -176,6 +176,6 @@ if __name__ =='__main__':
                 
         print(f'Completed {num_runs} full runs of the youtube checker')
     
-    is_anyone_live()
+    live_twitch_user = is_anyone_live()
         
         
