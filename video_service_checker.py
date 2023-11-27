@@ -151,7 +151,7 @@ def watch_user(username):
     web_open(url, new=1)
 
 
-def is_anyone_live(debugging=False):
+def is_anyone_live():
     twitch_access_token = run(get_access_token())
     list_of_users = all_streamers[get_time_period()]
     for username in list_of_users:
@@ -161,8 +161,6 @@ def is_anyone_live(debugging=False):
 
 
 if __name__ =='__main__':
-    
-    
     debugging = True
     if debugging:
         http_error = 'None...YAY'
@@ -177,6 +175,7 @@ if __name__ =='__main__':
                 num_runs += 1
                 
         print(f'Completed {num_runs} full runs of the youtube checker')
-        
+    
+    is_anyone_live()
         
         
