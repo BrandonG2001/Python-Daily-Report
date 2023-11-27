@@ -152,24 +152,12 @@ def watch_user(username):
 
 
 def is_anyone_live(debugging=False):
-    num_tries = 0
-    num_live = 0
-    live_user = None
     twitch_access_token = run(get_access_token())
     list_of_users = all_streamers[get_time_period()]
     for username in list_of_users:
-        num_tries += 1
-        if not debugging:
-            if is_user_live(username, TWITCH_CLIENT_ID, twitch_access_token):
-                return username
-            
         if is_user_live(username, TWITCH_CLIENT_ID, twitch_access_token):
-            #num_live += 1
-            live_user = username
-    if debugging:
-        return live_user, num_tries
-    
-    return live_user
+            return username
+    return None
 
 
 if __name__ =='__main__':
@@ -190,15 +178,5 @@ if __name__ =='__main__':
                 
         print(f'Completed {num_runs} full runs of the youtube checker')
         
-        print()
-        num_twitch_runs = 0
-        for i in range(1000):
-            live_twitch_user, tries = is_anyone_live(debugging=True)                
-            if live_twitch_user == None:
-                break
-            num_twitch_runs += tries
-            #print(f'Run: {i+1}')
-                
-                
-        print(f'Completed {num_twitch_runs} full runs of the Twitch checker')
+        
         
