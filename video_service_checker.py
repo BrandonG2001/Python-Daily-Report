@@ -160,15 +160,18 @@ def is_anyone_live():
 
 
 if __name__ =='__main__':
-    
+    pass
     # youtube api is costly (in terms of time and api requests)
     #ic(youtube_checker_v2())
     
     
-    
+    """
     live_twitch_user = is_anyone_live()  
     if live_twitch_user != None:
         watch_user(live_twitch_user)
+    """
     
+    http_error = 'None...YAY'
+    num_runs = 0
     
-    
+    while http_error == 'None...YAY'
