@@ -138,6 +138,7 @@ def is_user_live(username, twitch_client_id, twitch_access_token):
         "Authorization": f"Bearer {twitch_access_token}"
     }
     response = req_get(url, headers=headers)
+    print(response)
     data = response.json()
     try:
         return len(data["data"]) > 0
@@ -166,7 +167,7 @@ if __name__ =='__main__':
     
     
 
-    
+    """
     http_error = 'None...YAY'
     num_runs = 0
     print('Checking youtube api\n')
@@ -178,10 +179,11 @@ if __name__ =='__main__':
         if http_error == 'None...YAY':
             num_runs += 1
             
-    print(f'Completed {num_runs} full runs of the youtube checker')
+    print(f'Completed {num_runs} full runs of the youtube checker')"""
     
     num_twitch_runs = 0
-    for i in range(100):
-        live_twitch_user = is_anyone_live()  
+    is_anyone_live()
+    #for i in range(100):
+        #live_twitch_user = is_anyone_live()  
     #if live_twitch_user != None:
         #watch_user(live_twitch_user)
