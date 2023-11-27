@@ -184,11 +184,10 @@ if __name__ =='__main__':
         
         num_twitch_runs = 0
         for i in range(100):
-            live_twitch_user, tries = is_anyone_live(debugging=True)
-            if live_twitch_user != None:
-                num_twitch_runs += tries
+            live_twitch_user, tries = is_anyone_live(debugging=True)                
             if live_twitch_user == None:
                 break
+            num_twitch_runs += tries
             #print(f'Run: {i+1}')
                 
                 
