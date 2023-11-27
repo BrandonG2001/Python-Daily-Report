@@ -139,7 +139,7 @@ def is_user_live(username, twitch_client_id, twitch_access_token):
     }
     response = req_get(url, headers=headers)
     data = response.json()
-    print(data)
+    #print(data)
     try:
         return len(data["data"]) > 0
     except:
@@ -151,22 +151,20 @@ def watch_user(username):
     web_open(url, new=1)
 
 
-def is_anyone_live():
+def is_anyone_live(debugging=False):
+    num_tries = 0
     twitch_access_token = run(get_access_token())
     list_of_users = all_streamers[get_time_period()]
     for username in list_of_users:
+        num_tries += 1
         if is_user_live(username, TWITCH_CLIENT_ID, twitch_access_token):
+            if debugging:
+                return username, num_tries
             return username
     return None
 
 
 if __name__ =='__main__':
-    pass
-    # youtube api is costly (in terms of time and api requests)
-    #ic(youtube_checker_v2())
-    
-    
-
     """
     http_error = 'None...YAY'
     num_runs = 0
@@ -184,6 +182,13 @@ if __name__ =='__main__':
     num_twitch_runs = 0
     #is_anyone_live()
     for i in range(100):
-        live_twitch_user = is_anyone_live()  
-    #if live_twitch_user != None:
-        #watch_user(live_twitch_user)
+        live_twitch_user, tries = is_anyone_live(debugging=True)
+        if live_twitch_user != None:
+            num_twitch_runs += tries
+        if live_twitch_user == None:
+            break
+        print(f'Run: {i+1}')
+            
+            
+    print(f'Completed {num_twitch_runs} full runs of the Twitch checker')
+    
