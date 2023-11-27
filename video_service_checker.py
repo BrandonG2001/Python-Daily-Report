@@ -178,6 +178,7 @@ if __name__ =='__main__':
         print(f'Run: {num_runs + 1}')
         yt_dict = youtube_checker_v2()
         http_error = yt_dict['ERROR']
+        print(f'Response Length w/o error key : {len(yt_dict)-1}')
         if http_error == 'None...YAY':
             num_runs += 1
             
