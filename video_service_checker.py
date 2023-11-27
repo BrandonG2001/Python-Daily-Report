@@ -165,30 +165,32 @@ def is_anyone_live(debugging=False):
 
 
 if __name__ =='__main__':
-    """
-    http_error = 'None...YAY'
-    num_runs = 0
-    print('Checking youtube api\n')
-    while http_error == 'None...YAY':
-        print(f'Run: {num_runs + 1}')
-        yt_dict = youtube_checker_v2()
-        http_error = yt_dict['ERROR']
-        print(f'Response Length w/o error key : {len(yt_dict)-1}')
-        if http_error == 'None...YAY':
-            num_runs += 1
-            
-    print(f'Completed {num_runs} full runs of the youtube checker')"""
+    debugging = True
     
-    num_twitch_runs = 0
-    #is_anyone_live()
-    for i in range(100):
-        live_twitch_user, tries = is_anyone_live(debugging=True)
-        if live_twitch_user != None:
-            num_twitch_runs += tries
-        if live_twitch_user == None:
-            break
-        print(f'Run: {i+1}')
-            
-            
-    print(f'Completed {num_twitch_runs} full runs of the Twitch checker')
     
+    if debugging:
+        http_error = 'None...YAY'
+        num_runs = 0
+        print('Checking youtube api\n')
+        while http_error == 'None...YAY':
+            print(f'Run: {num_runs + 1}')
+            yt_dict = youtube_checker_v2()
+            http_error = yt_dict['ERROR']
+            print(f'Response Length w/o error key : {len(yt_dict)-1}')
+            if http_error == 'None...YAY':
+                num_runs += 1
+                
+        print(f'Completed {num_runs} full runs of the youtube checker')
+        
+        num_twitch_runs = 0
+        for i in range(100):
+            live_twitch_user, tries = is_anyone_live(debugging=True)
+            if live_twitch_user != None:
+                num_twitch_runs += tries
+            if live_twitch_user == None:
+                break
+            #print(f'Run: {i+1}')
+                
+                
+        print(f'Completed {num_twitch_runs} full runs of the Twitch checker')
+        
