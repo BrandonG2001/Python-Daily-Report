@@ -165,9 +165,9 @@ def is_anyone_live(debugging=False):
 
 
 if __name__ =='__main__':
+    
+    
     debugging = True
-    
-    
     if debugging:
         http_error = 'None...YAY'
         num_runs = 0
