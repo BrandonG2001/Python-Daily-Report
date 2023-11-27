@@ -177,5 +177,7 @@ if __name__ =='__main__':
         print(f'Completed {num_runs} full runs of the youtube checker')
     
     live_twitch_user = is_anyone_live()
+    if live_twitch_user:
+        print(f'Twitch Streamer {live_twitch_user} is Live Right Now...')
         
         
