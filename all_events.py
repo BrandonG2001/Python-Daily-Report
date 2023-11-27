@@ -87,6 +87,16 @@ def get_all_events():
                     name = name.replace('vs', 'verses')
                     name = name.strip()
                     
+                    # team_2_check
+                    if (name.split('at')[-1]).strip() == 'Texas':
+                        team_1 = name.split('at')[0]
+                        name = team_1 + 'at t.u.'
+                        
+                    elif (name.split('verses')[-1]).strip() == 'Texas':
+                        team_1 = name.split('verses')[0]
+                        name = team_1 + 'verses t.u.'
+                        #pass
+                    
                     event_info_list = [calendar_name, name, start_time_formatted, end_time_formatted]
 
                         
@@ -117,22 +127,77 @@ def get_all_events():
                 #last_index = len(events_info[my_date_formatted])
                 events_info[my_date_formatted].append(event_info_list)
 
-    # sort dictionary entries by time
-    for date in events_info:
-        events_info[date].sort(key=lambda x: datetime.strptime(x[-2], '%H:%M'))
+       
     
     # check if today is in the list (make sure events are future not past)
     today_key = today.strftime('%w, %m/%d')
     curr_time = datetime.now(tz=my_tz).time()
+    for date_key in events_info.keys():
+        if datetime.strptime(today_key,'%w, %m/%d').date() > datetime.strptime(date_key,'%w, %m/%d').date():
+            #print(date_key)
+            del events_info[date_key]
+            break
+        
     if today_key in events_info.keys():
         todays_events = events_info[today_key]
+        items_to_remove = []
         for event in todays_events:
-            start_time_comparer = datetime.strptime(event[-2],'%H:%M').time()
-            if start_time_comparer < curr_time:
-                todays_events.remove(event)
+            #print(event)
+            event_end_time = datetime.strptime(event[-1],'%H:%M').time()
+            #print(event_end_time.strftime('%H:%M'))
+            #print('Current time: ',curr_time.strftime('%H:%M'))
+            # if the current time is past (greater than) the end time
+            if event_end_time < curr_time:
+                #print(event)
+                items_to_remove.append(event)
+
+        for past_event in items_to_remove:
+            todays_events.remove(past_event)
         if len(todays_events) == 0:
             del events_info[today_key]
-
+            
+    # sort dictionary entries by time
+    for date in events_info:
+        events_info[date].sort(key=lambda x: datetime.strptime(x[-2], '%H:%M'))
+        
+    # ugly way to check if two of my tracked football teams are going against each other
+    # remove duplicate
+    for date in events_info:
+        # check for double football 
+        for index,event in enumerate(events_info[date]):
+            keep_going = True
+            #print(event)
+            if 'Football' in event[0]:
+                #print('EV1 ',event)
+                football_event = event[1]
+                if 'verses' in football_event:
+                    team_1, team_2 = football_event.split('verses', maxsplit=1)
+                else:
+                    team_1, team_2 = football_event.split('at', maxsplit=1)
+                    
+                team_1 = team_1.strip()
+                team_2= team_2.strip()
+                
+                for other_index,other_football in enumerate(events_info[date]):
+                    if 'Football' in other_football[0]:
+                        if index != other_index:
+                            other_football_event = other_football[1]
+                            #print(other_football_event)
+                            #print(other_football_event.split('at', maxsplit=1))
+                            if 'verses' in other_football_event:
+                                team_1_b, team_2_b = other_football_event.split('verses', maxsplit=1)
+                            else:
+                                team_1_b, team_2_b = other_football_event.split('at', maxsplit=1)
+                                
+                            team_1_b = team_1_b.strip()
+                            team_2_b = team_2_b.strip()
+                            
+                            if team_1_b in [team_1, team_2]: #or team_1_b in [team_1, team_2]:
+                                events_info[date].remove(other_football)
+                                keep_going = False
+                                break
+            if not keep_going:
+                break
     
     ##############################
     ###  All Day Cal Checking  ###
@@ -186,6 +251,8 @@ def get_all_events():
 
 if __name__ == '__main__':
     
+    #get_all_events()
+    print()
     print(get_all_events())
     
     
