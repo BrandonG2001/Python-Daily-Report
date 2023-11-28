@@ -17,16 +17,9 @@ def create_exe(script_name, exe_name, log_level='FATAL', make_admin=False):
                   f'--name="{exe_name}"',
                   ]
     if make_admin:
-        command_list = [
-                    "pyinstaller" ,
-                    '-F',
-                    f'{script_name}',
-                    '--uac-admin',
-                    f'--paths="{environ["VIRTUAL_ENV"]}\\Lib\\site_packages"',
-                    f'--log-level {log_level}',
-                    '--clean',
-                    f'--name="{exe_name}"',
-                    ]
+        command_list.insert(3, '--uac-admin')
+        
+        
     command = ''
     for command_part in command_list:
         command = command + command_part + ' '
