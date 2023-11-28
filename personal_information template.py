@@ -46,6 +46,7 @@ YOUTUBE_CHANNELS = {
 # Twitch
 # use Twitch_auth_getter to get access token
 # otherwise, this sucks trying to get
+## IMPORTANT: set at least one link in dev portal to be  http://localhost:17563
 TWITCH_SECRET_TOKEN = '' # use  https://dev.twitch.tv/console/apps to get secret and client id
 TWITCH_CLIENT_ID = ''
 
