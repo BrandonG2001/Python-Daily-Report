@@ -11,6 +11,7 @@ def create_exe(script_name, exe_name, log_level='FATAL'):
                   "pyinstaller" ,
                   '-F',
                   f'{script_name}',
+                  '--uac-admin',
                   f'--paths="{environ["VIRTUAL_ENV"]}\\Lib\\site_packages"',
                   f'--log-level {log_level}',
                   '--clean',
