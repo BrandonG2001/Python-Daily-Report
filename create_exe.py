@@ -36,6 +36,8 @@ def create_exe(script_name, exe_name, log_level='FATAL'):
     # delete temporary build files
     if path.isdir('build'):
         rmtree('build')
+        
+    desktop_path = path.join(environ['UserProfile'], 'Desktop')
 
 if __name__ == '__main__':
     # check to make sure personal_information.py exists
