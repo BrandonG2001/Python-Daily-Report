@@ -6,7 +6,7 @@ from warnings import filterwarnings
 filterwarnings("ignore", category=UserWarning)
 
 # Create function #
-def create_exe(script_name, exe_name, log_level='FATAL', uac_level=False):
+def create_exe(script_name, exe_name, log_level='FATAL', make_admin=False):
     command_list = [
                   "pyinstaller" ,
                   '-F',
@@ -16,7 +16,7 @@ def create_exe(script_name, exe_name, log_level='FATAL', uac_level=False):
                   '--clean',
                   f'--name="{exe_name}"',
                   ]
-    if uac_level:
+    if make_admin:
         command_list = [
                     "pyinstaller" ,
                     '-F',
@@ -58,7 +58,7 @@ if __name__ == '__main__':
         copyfile(src='personal_information template.py', dst='personal_information.py')
 
 
-    create_exe(script_name='gui_ui_frontend_v2.py', exe_name='Daily Report GUI', uac_level=True)
+    create_exe(script_name='gui_ui_frontend_v2.py', exe_name='Daily Report GUI', make_admin=True)
     
 
     
