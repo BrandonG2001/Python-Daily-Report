@@ -1,6 +1,6 @@
 from subprocess import Popen
 from shutil import rmtree, copyfile
-from os import path, environ, remove
+from os import path, environ, remove, getcwd
 
 from warnings import filterwarnings
 filterwarnings("ignore", category=UserWarning)
@@ -36,9 +36,10 @@ def create_exe(script_name, exe_name, log_level='FATAL'):
     # delete temporary build files
     if path.isdir('build'):
         rmtree('build')
-        
+    
+    current_file = path.join(getcwd(), 'dist', exe_name + '.exe')    
     desktop_path = path.join(environ['UserProfile'], 'Desktop')
-    copyfile(src=exe_name+'.exe', dst=path.join(desktop_path, exe_name+'.exe'))
+    copyfile(src=current_file, dst=path.join(desktop_path, exe_name+'.exe'))
 
 if __name__ == '__main__':
     # check to make sure personal_information.py exists
