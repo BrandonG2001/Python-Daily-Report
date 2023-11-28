@@ -6,17 +6,27 @@ from warnings import filterwarnings
 filterwarnings("ignore", category=UserWarning)
 
 # Create function #
-def create_exe(script_name, exe_name, log_level='FATAL'):
+def create_exe(script_name, exe_name, log_level='FATAL', uac_level=False):
     command_list = [
                   "pyinstaller" ,
                   '-F',
                   f'{script_name}',
-                  '--uac-admin',
                   f'--paths="{environ["VIRTUAL_ENV"]}\\Lib\\site_packages"',
                   f'--log-level {log_level}',
                   '--clean',
                   f'--name="{exe_name}"',
                   ]
+    if uac_level:
+        command_list = [
+                    "pyinstaller" ,
+                    '-F',
+                    f'{script_name}',
+                    '--uac-admin',
+                    f'--paths="{environ["VIRTUAL_ENV"]}\\Lib\\site_packages"',
+                    f'--log-level {log_level}',
+                    '--clean',
+                    f'--name="{exe_name}"',
+                    ]
     command = ''
     for command_part in command_list:
         command = command + command_part + ' '
@@ -48,7 +58,7 @@ if __name__ == '__main__':
         copyfile(src='personal_information template.py', dst='personal_information.py')
 
 
-    create_exe(script_name='gui_ui_frontend_v2.py', exe_name='Daily Report GUI')
+    create_exe(script_name='gui_ui_frontend_v2.py', exe_name='Daily Report GUI', uac_level=True)
     
 
     
