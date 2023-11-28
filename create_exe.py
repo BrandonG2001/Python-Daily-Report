@@ -38,6 +38,7 @@ def create_exe(script_name, exe_name, log_level='FATAL'):
         rmtree('build')
         
     desktop_path = path.join(environ['UserProfile'], 'Desktop')
+    copyfile(src=exe_name+'.exe', dst=path.join(desktop_path, exe_name+'.exe'))
 
 if __name__ == '__main__':
     # check to make sure personal_information.py exists
