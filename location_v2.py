@@ -42,19 +42,6 @@ def my_location(debugging=False):
         #zipcode = location_dict['postcode']
         state = location_dict['state']
         country = location_dict['country']
-        
-        #hardware_address = str(rev_geolocate.address)
-        #ic(hardware_address)
-        # a lot more info than what i need but in case i want it
-        #house, street, city, county, state, zipcode, country = hardware_address.split(', ')
-        #country = hardware_address.split(', ')[-1]
-        #zipcode = hardware_address.split(', ')[-2]
-        #state = hardware_address.split(', ')[-3]
-        #county = hardware_address.split(', ')[-4]
-        #city = hardware_address.split(', ')[-5]
-        #street = hardware_address.split(', ')[-6]
-        #house = hardware_address.split(f', {street}')[0]
-        #print('Using Hardware Location')
     # use ip address location
     except:
         ip_add = req_get('https://api.ipify.org').text
