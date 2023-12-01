@@ -305,7 +305,7 @@ class Ui_Dialog(object):
         my_result = main_pool.apply_async(main_report, (full_run, check_stardate, get_quote, check_calendar, check_weather, check_news, check_space_launches, check_vids, clean_windows, False) )
         
         self.pushButton.setEnabled(False)
-        self.pushButton_2.setEnabled(False)
+        #self.pushButton_2.setEnabled(False)
         
         self.buttons_pool.apply_async(self.enabling_buttons, (check_vids, my_result))
 
@@ -327,7 +327,7 @@ class Ui_Dialog(object):
             pass
 
         self.pushButton.setEnabled(True)
-        self.pushButton_2.setEnabled(True)
+        #self.pushButton_2.setEnabled(True)
 
     def closeIt(self):
         QtCore.QCoreApplication.instance().quit()
