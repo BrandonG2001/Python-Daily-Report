@@ -54,7 +54,9 @@ def open_my_websites() -> None:
         'My Gmail' : 'mail.google.com/mail/u/0/#inbox',
         'Github' :'www.github.com/BrandonG2001?tab=repositories',
         'Amazon' : 'www.amazon.com',
-        'Reqzone' : 'reqzone.com'
+        'Reqzone' : 'reqzone.com',
+        'ChatGPT' :'chat.openai.com',
+        'Google Calendar' : 'calendar.google.com/calendar',
     }
 
     work_urls = {
@@ -65,7 +67,7 @@ def open_my_websites() -> None:
 
     # run different url dicts
     asyncio.run(OpenBrowser(url_dict=personal_urls))
-    asyncio.run(OpenBrowser(url_dict=work_urls))
+    #asyncio.run(OpenBrowser(url_dict=work_urls))
 
 
 if __name__ == '__main__':
