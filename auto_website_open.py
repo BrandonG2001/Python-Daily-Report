@@ -5,6 +5,8 @@ import logging as log
 import httpx
 import asyncio
 
+from personal_information import WEBSITES_TO_OPEN
+
 # function to open webrowser on any dict
 async def OpenBrowser(url_dict: dict) -> None:
     schema = 'https://'
@@ -46,28 +48,8 @@ async def OpenBrowser(url_dict: dict) -> None:
             
          
 def open_my_websites() -> None:
-    personal_urls = {
-        'Youtube' : 'www.youtube.com',
-        'Twitch' :'www.twitch.tv',
-        'zlibrary' : 'z-library.se',
-        'My G-Drive' : 'drive.google.com/drive/u/0/my-drive',
-        'My Gmail' : 'mail.google.com/mail/u/0/#inbox',
-        'Github' :'www.github.com/BrandonG2001?tab=repositories',
-        'Amazon' : 'www.amazon.com',
-        'Reqzone' : 'reqzone.com',
-        'ChatGPT' :'chat.openai.com',
-        'Google Calendar' : 'calendar.google.com/calendar',
-    }
-
-    work_urls = {
-        'ChatGPT' :'chat.openai.com',
-        'Google Calendar' : 'calendar.google.com/calendar'
-    }
-
-
     # run different url dicts
-    asyncio.run(OpenBrowser(url_dict=personal_urls))
-    #asyncio.run(OpenBrowser(url_dict=work_urls))
+    asyncio.run(OpenBrowser(url_dict=WEBSITES_TO_OPEN))
 
 
 if __name__ == '__main__':
