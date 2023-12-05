@@ -12,6 +12,7 @@ WEATHER_SOURCE = weather_sources[0]
 
 #newsapi.org
 NEWS_API_KEY = ''
+
 # use get sources from news.py to get sources you want
 NEWS_SOURCES = [ 
 
@@ -78,6 +79,14 @@ ALL_STREAMERS = {
                 }
 
 
+# websites to auto open
+WEBSITES_TO_OPEN = {
+        'Youtube' : 'www.youtube.com',
+        'Twitch' :'www.twitch.tv',
+        # add more websites as you see fit
+    }
+
+
 #################
 ### CALENDARS ###
 #################
@@ -85,25 +94,15 @@ ALL_STREAMERS = {
 # icloud cals will generally start with    webcal://
 # other cals (google calendar) generally start with    https://
 MY_CALENDARS = {
-                'icloud Home' : '',
-                'icloud Work' : '',
-                'icloud School Work' : '',
-                
-                'Nascar Cup Series' : '',
-                'Nascar Xfinity Series' : '',
-                'Nascar Truck Series' : '',
-                
-                'Formula 1' : '',
-                
-                "Texas A&M Football" : '',
-                "Texas Tech Football" : '',
-                'tu Football' : '',
+                'icloud Home' : None,
+                'icloud Work' : None,
+                'icloud School Work' : None,
                 }
 
 
 ALL_DAY_CALENDARS = {
-                    'US HOLIDAYS' : '',
-                    'Birthdays' : ''
+                    'US HOLIDAYS' : None,
+                    'Birthdays' : None,
                     }
 
 
