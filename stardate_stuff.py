@@ -9,7 +9,7 @@ class StarDate():
     date = None
     stardate = None
 
-    def __init__(self, date=None, verbose=False):
+    def __init__(self, date=None):
         self.date = date
 
     def setDate(self, date):
@@ -33,29 +33,5 @@ class StarDate():
 
         return self.stardate
 
-    def main(self):
-        try:
-            parser = ArgumentParser()
-            parser.add_argument(
-                '-v', '--verbose', help='if you want to see more variables and the calculation process', action='store_true')
-            parser.add_argument(
-                '-d', '--date', help='Enter the date to convert to stardate, format YYYY-MM-DD', metavar='D', type=str, default=None)
-            args = parser.parse_args()
 
-            self.verbose = args.verbose
-            self.date = args.date
-
-            if(self.verbose):
-                print("Argument Verbose : " + str(self.verbose))
-                if(self.date != None):
-                    print("Argument Date : " + self.date)
-                else:
-                    print("Argument Date : " +
-                          datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-                    print()
-
-            self.getStardate()
-
-        except Exception as e:
-            print(e)
             
