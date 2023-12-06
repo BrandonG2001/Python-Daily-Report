@@ -1,11 +1,13 @@
 from math import floor
 from dateutil.parser import parse
-from datetime import datetime
+from datetime import datetime, timezone
 from argparse import ArgumentParser
 from time import mktime
 
 
+
 class StarDate():
+    my_loc_tz = datetime.now(timezone.utc).astimezone().tzinfo
     date = None
     stardate = None
 
@@ -23,7 +25,7 @@ class StarDate():
         if(self.date != None):
             stardateRequested = parse(self.date)
         else:
-            stardateRequested = datetime.now()
+            stardateRequested = datetime.now(self.my_loc_tz)
 
         stardateOrigin = parse("1987-07-15T00:00:00-00:00")
 
@@ -37,6 +39,7 @@ class StarDate():
 
 
 if __name__ == '__main__':
+    
     a = StarDate()
     a.getStardate()
     
