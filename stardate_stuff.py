@@ -31,6 +31,7 @@ class StarDate():
         self.stardate = self.stardate / (60.0 * 60.0 * 24.0 * 0.036525)
         self.stardate = floor(self.stardate + 410000.0)
         self.stardate = self.stardate / 10.0
+        print(self.stardate)
 
         return self.stardate
 
