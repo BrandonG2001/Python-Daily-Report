@@ -26,8 +26,7 @@ class StarDate():
 
         stardateOrigin = parse("1987-07-15T00:00:00-00:00")
 
-        self.stardate = self.to_seconds(
-            stardateRequested) - self.to_seconds(stardateOrigin)
+        self.stardate = self.to_seconds(stardateRequested) - self.to_seconds(stardateOrigin)
         self.stardate = self.stardate / (60.0 * 60.0 * 24.0 * 0.036525)
         self.stardate = floor(self.stardate + 410000.0)
         self.stardate = self.stardate / 10.0
