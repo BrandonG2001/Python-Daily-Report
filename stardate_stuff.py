@@ -18,7 +18,7 @@ class StarDate():
         self.date = date
 
     def to_seconds(self, date):
-        print(mktime(date.timetuple()))
+        #print(mktime(date.timetuple()))
         return mktime(date.timetuple())
 
     def getStardate(self):
@@ -33,7 +33,7 @@ class StarDate():
         self.stardate = self.stardate / (60.0 * 60.0 * 24.0 * 0.036525)
         self.stardate = floor(self.stardate + 410000.0)
         self.stardate = self.stardate / 10.0
-        print(self.stardate)
+        #print(self.stardate)
 
         return self.stardate
 
@@ -41,6 +41,6 @@ class StarDate():
 if __name__ == '__main__':
     
     a = StarDate()
-    a.getStardate()
+    print(a.getStardate())
     
     
