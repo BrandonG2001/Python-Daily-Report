@@ -139,7 +139,7 @@ def is_user_live(username, twitch_client_id, twitch_access_token):
     }
     response = req_get(url, headers=headers)
     data = response.json()
-    # print(data)
+    #print(data)
     #print(data)
     try:
         return len(data["data"]) > 0
