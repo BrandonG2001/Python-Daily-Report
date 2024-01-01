@@ -139,6 +139,7 @@ def is_user_live(username, twitch_client_id, twitch_access_token):
     }
     response = req_get(url, headers=headers)
     data = response.json()
+    # print(data)
     #print(data)
     try:
         return len(data["data"]) > 0
@@ -161,7 +162,7 @@ def is_anyone_live():
 
 
 if __name__ =='__main__':
-    debugging = True
+    debugging = False
     if debugging:
         http_error = 'None...YAY'
         num_runs = 0
