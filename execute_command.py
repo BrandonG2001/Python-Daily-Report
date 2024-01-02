@@ -86,3 +86,6 @@ def clean_cache():
         return True
     except:
         return False
+    
+if __name__ == "__main__":
+    clean_windows_temp_files()
