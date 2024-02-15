@@ -198,7 +198,7 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                         else:
                             print_and_speak(f'   {title} from {start_time} to {end_time}', speed=140)
                             
-                    elif calendar_name != 'Holidays' and calendar_name != 'Birthdays':
+                    elif "holidays" not in calendar_name.lower() and calendar_name != 'Birthdays':
                         title = all_my_events[i][k][1]
                         #start = all_my_events[i][k][2]
                         #end = all_my_events[i][k][3]
