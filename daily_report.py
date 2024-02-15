@@ -121,8 +121,10 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
                 date = all_my_events[i][0][3:]
-                print(date)
+                #print(date)
                 if today.date() > datetime.strptime(date, "%m/%d").date():
+                    print("Today = ", today.strftime("%m/%d"))
+                    print("Date in Q = ", date)
                     print("after today")
                     continue        
 
