@@ -43,7 +43,7 @@ def video_thread_func():
 
 
 ### Running Variables
-def main_report(Full_run=False, get_stardate=True, give_random_quote=True, checking_calendar=True,
+def main_report(Full_run=False, get_stardate=True, give_random_quote=False, checking_calendar=True,
                 checking_weather=True, checking_news=True, checking_space_launches=True, checking_vids=False,
                 clean_windows=False, debugging=False):
     
@@ -117,6 +117,7 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=True, check
             for i in range(len(all_my_events)):
                 #my_date = all_my_events[i][0][3:]
                 #ic(my_date)
+                print(all_my_events[i])
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
 
