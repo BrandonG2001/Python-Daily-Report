@@ -117,9 +117,13 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
             for i in range(len(all_my_events)):
                 #my_date = all_my_events[i][0][3:]
                 #ic(my_date)
-                print(all_my_events[i])
+                # print(all_my_events[i])
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
+                date = all_my_events[i][0][3:]
+                print(date)
+                if today.date() < datetime.strptime(date, "%m/%y").date():
+                    continue        
 
                 if today.strftime('%w, %m/%d') == all_my_events[i][0]:
                     on_date = 'Today,'
