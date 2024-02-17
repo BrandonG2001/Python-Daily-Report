@@ -120,10 +120,9 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                 # print(all_my_events[i])
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
-                date = all_my_events[i][0][3:]
-                date = date + "/" + today.strftime("%y")
-                #print(date)
-                if not today.date() <= datetime.strptime(date, "%m/%d/%y").date():
+                event_date = all_my_events[i][0][3:]
+                event_date = event_date + "/" + today.strftime("%y")
+                if not (today.date() > datetime.strptime(event_date, "%m/%d/%y").date()):
                     if today.strftime('%w, %m/%d') == all_my_events[i][0]:
                         on_date = 'Today,'
                     elif tomorow.strftime('%w, %m/%d') == all_my_events[i][0]:
@@ -135,8 +134,6 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                         calendar_name = all_my_events[i][k][0]
                         if 'Nascar' in calendar_name:
                             series = all_my_events[i][k][0]
-                            
-
                             title = all_my_events[i][k][1]
                             #start = all_my_events[i][k][2]
                             start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
