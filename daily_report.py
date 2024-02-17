@@ -45,7 +45,7 @@ def video_thread_func():
 ### Running Variables
 def main_report(Full_run=False, get_stardate=True, give_random_quote=False, checking_calendar=True,
                 checking_weather=True, checking_news=True, checking_space_launches=True, checking_vids=False,
-                clean_windows=False, debugging=False):
+                clean_windows=False, debugging=False) -> bool:
     
     if debugging:
         ic.enable()
