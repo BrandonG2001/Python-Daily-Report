@@ -123,122 +123,117 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                 date = all_my_events[i][0][3:]
                 date = date + "/" + today.strftime("%y")
                 #print(date)
-                if today.date() < datetime.strptime(date, "%m/%d/%y").date():
-                    print("Today = ", today.strftime("%m/%d"))
-                    print("Date in Q = ", date)
-                    print("after today")
-                    continue        
-
-                if today.strftime('%w, %m/%d') == all_my_events[i][0]:
-                    on_date = 'Today,'
-                elif tomorow.strftime('%w, %m/%d') == all_my_events[i][0]:
-                    on_date = 'Tomorrow,'
-                else:
-                    on_date = 'On ' + day_of_the_week + ','
-                print_and_speak(on_date)
-                for k in range(1, len(all_my_events[i])):
-                    calendar_name = all_my_events[i][k][0]
-                    if 'Nascar' in calendar_name:
-                        series = all_my_events[i][k][0]
-                        
-
-                        title = all_my_events[i][k][1]
-                        #start = all_my_events[i][k][2]
-                        start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
-                        start_time = start.strftime('%I:%M %p')
-                        if start_time[0] == '0':
-                            start_time = start_time[1:]
-                        if start_time[-2:] == 'AM':
-                            start_time = start_time[:-2] + 'A.M.'
-                        elif start_time[-2:] == 'PM':
-                            start_time = start_time[:-2] + 'P.M.'
-                        #end = all_my_events[i][k][3]
-
-                        # because pyttsx3 cant pronounce xfinity correctly (its really bad)
-                        if 'Xfinity' in series:
-                            print(f'   {series} - {title} starting at {start_time}')
-                            speak(f'   Nascar X-finidy Series - {title} starting at {start_time}', speed=140)
-                            pass
-                        else:
-                            print_and_speak(f'   {series} - {title} starting at {start_time}', speed=140)
-
-                    elif calendar_name == 'Formula 1':
-                        event_type = all_my_events[i][k][1]
-                        event = all_my_events[i][k][2]
-                        #start = all_my_events[i][k][3]
-                        start = datetime.strptime(all_my_events[i][k][3],'%H:%M')
-                        start_time = start.time().strftime('%I:%M %p')
-                        if start_time[0] == '0':
-                            start_time = start_time[1:]
-                        #end = f1_events[i][k][4]
-                        # this is for the main race (ex   Monaco Grand Prix)
-                        if event_type in event:
-                            print(f'   Formula 1 {event} starting at {start_time}')
-                            start_time_hour, start_time_end = start_time.split(':')
-                            if '00' in start_time_end:
-                                start_time_end = start_time_end[-3:]
-                            speak(f'   Formula 1 {event} starting at {start_time_hour} {start_time_end}', speed=140)
-                        # this is for Qualifying, Sprints, etc
-                        else:
-                            start_time_hour, start_time_end = start_time.split(':')
-                            if '00' in start_time_end:
-                                start_time_end = start_time_end[-3:]
-                            print(f'   Formula 1 {event_type} for {event} starting at {start_time}')
-                            speak(f'   Formula 1 {event_type} for {event} starting at {start_time_hour} {start_time_end}', speed=140)
-
-                    elif 'football' in calendar_name.lower():
-                        title = all_my_events[i][k][1]
-                        #start = all_my_events[i][k][2]
-                        #end = all_my_events[i][k][3]
-
-                        start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
-                        start_time = start.strftime('%I:%M %p')
-                        end = datetime.strptime(all_my_events[i][k][3],'%H:%M').time()
-                        end_time = end.strftime('%I:%M %p')
-
-                        if start_time[0] == '0':
-                            start_time = start_time[1:]
-                        if end_time[0] == '0':
-                            end_time = end_time[1:]
-                        # in same am/pm time
-                        if start_time[-3:] == end_time[-3:]:
-                            print_and_speak(f'   {title} from {start_time[:-3]} to {end_time}', speed=140)
-                        else:
-                            print_and_speak(f'   {title} from {start_time} to {end_time}', speed=140)
-                            
-                    elif "holidays" not in calendar_name.lower() and calendar_name != 'Birthdays':
-                        title = all_my_events[i][k][1]
-                        #start = all_my_events[i][k][2]
-                        #end = all_my_events[i][k][3]
-
-                        start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
-                        start_time = start.strftime('%I:%M %p')
-                        end = datetime.strptime(all_my_events[i][k][3],'%H:%M').time()
-                        end_time = end.strftime('%I:%M %p')
-
-                        if start_time[0] == '0':
-                            start_time = start_time[1:]
-                        if end_time[0] == '0':
-                            end_time = end_time[1:]
-                        # in same am/pm time
-                        if start_time[-3:] == end_time[-3:]:
-                            print_and_speak(f'   {title} from {start_time[:-3]} to {end_time}', speed=140)
-                        else:
-                            print_and_speak(f'   {title} from {start_time} to {end_time}', speed=140)
-                        
-                    elif calendar_name == 'Birthdays':
-                        title = all_my_events[i][k][1]
-                        print_and_speak(f'   {title}. Do NOT forget to call or text.', speed=140)
-                    
-                    elif calendar_name == 'Holidays':
-                        title = all_my_events[i][k][1]
-                        print_and_speak(f'   {title}', speed=140)
-                        
+                if not today.date() <= datetime.strptime(date, "%m/%d/%y").date():
+                    if today.strftime('%w, %m/%d') == all_my_events[i][0]:
+                        on_date = 'Today,'
+                    elif tomorow.strftime('%w, %m/%d') == all_my_events[i][0]:
+                        on_date = 'Tomorrow,'
                     else:
-                        title = all_my_events[i][k][1]
-                        print_and_speak(f'   {title}', speed=140)
+                        on_date = 'On ' + day_of_the_week + ','
+                    print_and_speak(on_date)
+                    for k in range(1, len(all_my_events[i])):
+                        calendar_name = all_my_events[i][k][0]
+                        if 'Nascar' in calendar_name:
+                            series = all_my_events[i][k][0]
+                            
+
+                            title = all_my_events[i][k][1]
+                            #start = all_my_events[i][k][2]
+                            start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
+                            start_time = start.strftime('%I:%M %p')
+                            if start_time[0] == '0':
+                                start_time = start_time[1:]
+                            if start_time[-2:] == 'AM':
+                                start_time = start_time[:-2] + 'A.M.'
+                            elif start_time[-2:] == 'PM':
+                                start_time = start_time[:-2] + 'P.M.'
+                            #end = all_my_events[i][k][3]
+
+                            # because pyttsx3 cant pronounce xfinity correctly (its really bad)
+                            if 'Xfinity' in series:
+                                print(f'   {series} - {title} starting at {start_time}')
+                                speak(f'   Nascar X-finidy Series - {title} starting at {start_time}', speed=140)
+                                pass
+                            else:
+                                print_and_speak(f'   {series} - {title} starting at {start_time}', speed=140)
+
+                        elif calendar_name == 'Formula 1':
+                            event_type = all_my_events[i][k][1]
+                            event = all_my_events[i][k][2]
+                            #start = all_my_events[i][k][3]
+                            start = datetime.strptime(all_my_events[i][k][3],'%H:%M')
+                            start_time = start.time().strftime('%I:%M %p')
+                            if start_time[0] == '0':
+                                start_time = start_time[1:]
+                            #end = f1_events[i][k][4]
+                            # this is for the main race (ex   Monaco Grand Prix)
+                            if event_type in event:
+                                print(f'   Formula 1 {event} starting at {start_time}')
+                                start_time_hour, start_time_end = start_time.split(':')
+                                if '00' in start_time_end:
+                                    start_time_end = start_time_end[-3:]
+                                speak(f'   Formula 1 {event} starting at {start_time_hour} {start_time_end}', speed=140)
+                            # this is for Qualifying, Sprints, etc
+                            else:
+                                start_time_hour, start_time_end = start_time.split(':')
+                                if '00' in start_time_end:
+                                    start_time_end = start_time_end[-3:]
+                                print(f'   Formula 1 {event_type} for {event} starting at {start_time}')
+                                speak(f'   Formula 1 {event_type} for {event} starting at {start_time_hour} {start_time_end}', speed=140)
+
+                        elif 'football' in calendar_name.lower():
+                            title = all_my_events[i][k][1]
+                            #start = all_my_events[i][k][2]
+                            #end = all_my_events[i][k][3]
+
+                            start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
+                            start_time = start.strftime('%I:%M %p')
+                            end = datetime.strptime(all_my_events[i][k][3],'%H:%M').time()
+                            end_time = end.strftime('%I:%M %p')
+
+                            if start_time[0] == '0':
+                                start_time = start_time[1:]
+                            if end_time[0] == '0':
+                                end_time = end_time[1:]
+                            # in same am/pm time
+                            if start_time[-3:] == end_time[-3:]:
+                                print_and_speak(f'   {title} from {start_time[:-3]} to {end_time}', speed=140)
+                            else:
+                                print_and_speak(f'   {title} from {start_time} to {end_time}', speed=140)
+                                
+                        elif "holidays" not in calendar_name.lower() and calendar_name != 'Birthdays':
+                            title = all_my_events[i][k][1]
+                            #start = all_my_events[i][k][2]
+                            #end = all_my_events[i][k][3]
+
+                            start = datetime.strptime(all_my_events[i][k][2],'%H:%M').time()
+                            start_time = start.strftime('%I:%M %p')
+                            end = datetime.strptime(all_my_events[i][k][3],'%H:%M').time()
+                            end_time = end.strftime('%I:%M %p')
+
+                            if start_time[0] == '0':
+                                start_time = start_time[1:]
+                            if end_time[0] == '0':
+                                end_time = end_time[1:]
+                            # in same am/pm time
+                            if start_time[-3:] == end_time[-3:]:
+                                print_and_speak(f'   {title} from {start_time[:-3]} to {end_time}', speed=140)
+                            else:
+                                print_and_speak(f'   {title} from {start_time} to {end_time}', speed=140)
+                            
+                        elif calendar_name == 'Birthdays':
+                            title = all_my_events[i][k][1]
+                            print_and_speak(f'   {title}. Do NOT forget to call or text.', speed=140)
                         
-                print()
+                        elif calendar_name == 'Holidays':
+                            title = all_my_events[i][k][1]
+                            print_and_speak(f'   {title}', speed=140)
+                            
+                        else:
+                            title = all_my_events[i][k][1]
+                            print_and_speak(f'   {title}', speed=140)
+                            
+                    print()
         else:
             print_and_speak('Your Calendar is clear for the upcoming week.')
 
