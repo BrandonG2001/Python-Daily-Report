@@ -131,10 +131,10 @@ def get_all_events():
         
         
         # check if today is in the list (make sure events are future not past)
-        today_key = today.strftime('%w, %m/%d')
+        today_key = today.strftime('%w, %m/%d/%y')
         curr_time = datetime.now(tz=my_tz).time()
         for date_key in events_info.keys():
-            if datetime.strptime(today_key,'%w, %m/%d').date() > datetime.strptime(date_key,'%w, %m/%d').date():
+            if datetime.strptime(today_key,'%w, %m/%d/%y').date() > datetime.strptime(date_key,'%w, %m/%d/%y').date():
                 #print(date_key)
                 del events_info[date_key]
                 break
@@ -222,7 +222,7 @@ def get_all_events():
                 #print(full_name)
                 event_length = full_name.split('(')[-1]
                 name = full_name.split('(' + event_length)[0].strip()
-                my_date_formatted = start_time_datetime.date().strftime('%w, %m/%d')
+                my_date_formatted = start_time_datetime.date().strftime('%w, %m/%d/%y')
                 #print(name)
                 
                 if 'holidays' not in all_day_calender.lower()  or  (name in IMPORTANT_HOLIDAYS):
@@ -245,7 +245,7 @@ def get_all_events():
                     temp_event.append(event)
                 my_events_unsorted.append(temp_event)
         
-            my_events = sorted(my_events_unsorted, key=lambda x: datetime.strptime(x[0], '%w, %m/%d'), reverse=False)
+            my_events = sorted(my_events_unsorted, key=lambda x: datetime.strptime(x[0], '%w, %m/%d/%y'), reverse=False)
 
         return my_events
     except:
