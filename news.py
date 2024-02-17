@@ -51,6 +51,8 @@ if __name__ == '__main__':
     news_res = get_news()
     for index, articles in enumerate(news_res):
         print(articles.keys())
+        print()
+        # print(articles["source"])
         print(articles['title'])
         print(articles['description'])
         break
