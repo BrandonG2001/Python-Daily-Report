@@ -10,7 +10,7 @@ def create_exe(script_name, exe_name, log_level='FATAL', make_admin=False):
     command_list = [
                   "pyinstaller" ,
                   '-F',
-                  f'{script_name}',
+                  f'\"{script_name}\"',
                   f'--paths="{environ["VIRTUAL_ENV"]}\\Lib\\site_packages"',
                   f'--log-level {log_level}',
                   '--clean',
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         copyfile(src='personal_information template.py', dst='personal_information.py')
 
 
-    create_exe(script_name='gui_ui_frontend_v2.py', exe_name='Daily Report GUI', make_admin=True)
+    create_exe(script_name='DAILY REPORT GUI.py', exe_name='Daily Report GUI', make_admin=True)
     
 
     
