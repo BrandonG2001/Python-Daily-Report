@@ -236,6 +236,12 @@ def get_all_events():
                         events_info[my_date_formatted].insert(0, event_info_list)
 
 
+        for date_key in events_info.keys():
+            if datetime.strptime(today_key,'%w, %m/%d/%y').date() > datetime.strptime(date_key,'%w, %m/%d/%y').date():
+                #print(date_key)
+                del events_info[date_key]
+                break
+
         # Getting a sorted list of events by date
         if len(events_info) != 0:
             my_events_unsorted = []
