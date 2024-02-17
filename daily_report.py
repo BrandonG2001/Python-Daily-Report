@@ -115,9 +115,6 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
         print_and_speak('Checking your upcoming calendar events...', speed=140)
         if len(all_my_events) != 0:
             for i in range(len(all_my_events)):
-                #my_date = all_my_events[i][0][3:]
-                #ic(my_date)
-                # print(all_my_events[i])
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
                 event_date = all_my_events[i][0][3:]
