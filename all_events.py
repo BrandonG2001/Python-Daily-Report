@@ -56,7 +56,7 @@ def get_all_events():
                 # formatted start and end times
                 start_time_formatted = start_time_datetime.time().strftime('%H:%M')
                 end_time_formatted = end_time.strftime('%H:%M')
-                my_date_formatted = start_time_datetime.date().strftime('%w, %m/%d')
+                my_date_formatted = start_time_datetime.date().strftime('%w, %m/%d/%y')
 
                 name = name.strip()
 

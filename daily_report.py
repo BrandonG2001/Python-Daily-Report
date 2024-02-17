@@ -118,11 +118,11 @@ def main_report(Full_run=False, get_stardate=True, give_random_quote=False, chec
                 day_index = all_my_events[i][0][0]
                 day_of_the_week = days_of_wk[day_index]
                 event_date = all_my_events[i][0][3:]
-                event_date = event_date + "/" + today.strftime("%y")
+                # event_date = event_date + "/" + today.strftime("%y")
                 if not (today.date() > datetime.strptime(event_date, "%m/%d/%y").date()):
-                    if today.strftime('%w, %m/%d') == all_my_events[i][0]:
+                    if today.strftime('%w, %m/%d/%y') == all_my_events[i][0]:
                         on_date = 'Today,'
-                    elif tomorow.strftime('%w, %m/%d') == all_my_events[i][0]:
+                    elif tomorow.strftime('%w, %m/%d/%y') == all_my_events[i][0]:
                         on_date = 'Tomorrow,'
                     else:
                         on_date = 'On ' + day_of_the_week + ','
